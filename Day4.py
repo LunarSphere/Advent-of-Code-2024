@@ -6,15 +6,19 @@ def search(y,x, dx, dy, key = "XMAS") -> bool:
     for line in file.readlines():
         r = [c for c in line if c != "\n"]
         matrix.append(r)
+    # maximum bound of x or y
     extentX = x + (dx*(len(key)-1))
     extentY = y + (dy*(len(key)-1))
+    # if less than or greater than bound quit
     if extentX < 0 or extentY < 0 or extentX >= len(matrix[0]) or extentY >= len(matrix):
         return False
+    # keep checking for matching letters else return false
     for i, k in enumerate(key):
         new_x = x + (i*dx)
         new_y = y + (i*dy)
         if matrix[new_y] [new_x] != k:
             return False
+    # if it finishes its a match
     return True
 
 
@@ -45,6 +49,7 @@ def part1() -> int: #ans: 2427
 
 def part2(): #ans = 1900
     #we are looking for MAS in the shape of an X A is always in the center. 
+    # check for x-mas for every a in matrix
     # there are 4 possible orientations that you can get by taking any position and rotaiting 4 times.
     matrix = []
     file = open("input/day4.txt")
