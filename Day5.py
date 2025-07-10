@@ -16,6 +16,7 @@ def load_data():
                 rules.append((int(vals[0]), int(vals[1])))
             if not read_rules:
                 updates.append([int(s) for s in line.split(",")])
+    file.close()
     return rules, updates
 
 def valid_update(rules, update) -> bool:
@@ -32,7 +33,7 @@ def valid_update(rules, update) -> bool:
 def dfs(node, rules, stack,visited=None):
     #node: index of node in update
     # rules:  Directed acyclic graph
-    # stack: stack to push data on and off
+    # stack: stack represent order of values
     # visited: list of visited nodes represented as true or false
     if visited is None:
         visited = set()
@@ -45,7 +46,7 @@ def dfs(node, rules, stack,visited=None):
     return stack
 
 def invalid_update(rules, update) -> list[int]:
-    # build fixed update by running a topological sort | bassically a DFS on a DAG results in an ordered list
+    # fix update by running a topological sort | bassically a DFS on a DAG results in an ordered list
     # Tidbit: Topological sort only works on DAG because its acyclic if done on a cyclic graph there would be a cyclic dependency
     # the rules are perfect for a DAG 
     sub_rules = {}
@@ -57,7 +58,7 @@ def invalid_update(rules, update) -> list[int]:
     
     # builds an adjacency list for a graph with only relevant rules (Directed Acyclic graph)
     #update its a hell of a lot easier to do dfs with a dictionary of subrules
-    stack = [] #stack from the top sort video so we wanna use .insert(0, item)    
+    stack = []   
     visited = set()
     for node in update:
         if node not in visited: # if nodes hasn't been visited do a depth first search

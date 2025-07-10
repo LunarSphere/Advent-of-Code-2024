@@ -31,6 +31,7 @@ def part1() -> int: #ans: 2427
     for line in file.readlines():
         r = [c for c in line if c != "\n"]
         matrix.append(r)
+    file.close()
 
 
     count = 0
@@ -57,8 +58,7 @@ def part2(): #ans = 1900
     for line in file.readlines():
         r = [c for c in line if c != "\n"]
         matrix.append(r)
-
-
+    file.close()
     count = 0
     # check up,down,left,right, up-right, down-right, up left, down-left 
     #search each character in every direction
@@ -80,7 +80,7 @@ def part2(): #ans = 1900
 
 
 def main():
-    # print(part1())
+    print(part1())
     print(part2())
     return
 

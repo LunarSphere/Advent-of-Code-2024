@@ -13,7 +13,7 @@ def part1():
             multiples = re.findall(digit_pattern,mul)
             multiplied_total += int(multiples[0]) * int(multiples[1])
             
-
+    file.close()
     return multiplied_total
 
 def part2():
@@ -35,7 +35,7 @@ def part2():
                 multiples = re.findall(digit_pattern,mul)
                 multiplied_total += int(multiples[0]) * int(multiples[1])
             
-
+    file.close()
     return multiplied_total
 
 def main():
