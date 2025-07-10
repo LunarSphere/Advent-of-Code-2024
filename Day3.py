@@ -1,3 +1,4 @@
+# Getting REGEX using extracted values
 import re
 def part1():
     file = open("input/day3.txt")

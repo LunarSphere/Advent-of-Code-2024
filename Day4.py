@@ -1,3 +1,4 @@
+# OMNI directional brute force Search
 def search(y,x, dx, dy, key = "XMAS") -> bool:
     # returns true or false depending on if key is present
     #load the matrix
