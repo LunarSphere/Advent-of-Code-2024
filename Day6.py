@@ -1,3 +1,4 @@
+# I would say the core skill learned here is more matrix navigation?
 def load_data():
     data = []
     with open("input/day6.txt", "r") as file:
@@ -21,29 +22,37 @@ def solve(data=None):
     for r in range(len(data)):
         for c in range(len(data[r])):
         #multi type lists are a sin
+        #position and angle facing
             if data[r][c] == "^":
                 guard_pos = [r,c, 0]
-            if data[r][c] == ">":
+            elif data[r][c] == ">":
                 guard_pos = [r, c, 90]
-            if data[r][c] == "<":
+            elif data[r][c] == "<":
                 guard_pos = [r,c, 270]
-            if data[r][c] == "v":
+            elif data[r][c] == "v":
                 guard_pos = [r,c, 180]
             
     
     
     # simulate guards route 
-    while((guard_pos[0] > 0 and guard_pos[1] >0) and guard_pos[0] < len(data) -1 and guard_pos[0] < len(data[0]) -1 ):
+    while((guard_pos[0] > 0 and guard_pos[1] >0) and guard_pos[0] < len(data)-1 and guard_pos[1] < len(data[0]) -1):
+        # get guards rown and column
         r = guard_pos[0]
         c = guard_pos[1]
+        # each if/elif is same check but on a different orientation
         if guard_pos[2] == 0:
+            # 0 degrees 
+            # if position in front is blocked
             if data[r-1][c] == "#":
+                # rotate & update orientation(angle facing)
                 data[r][c] = ">"
                 guard_pos = [r,c, 90]
             else: 
+                # else move forward maintain orientation
                 data[r][c] = "X"
                 data[r-1][c] = "^"
                 guard_pos = [r-1, c, 0]
+        #rinse and repeat
         elif guard_pos[2] == 90:
             if data[r][c+1] == "#":
                 data[r][c] = "v"
